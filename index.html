@@ -235,18 +235,27 @@
     </div>
             
       <script>
-        // 🏆 Auto-Slide Banner Every 5 Seconds
-        function autoSlideBanner() {
-            const banner = document.getElementById("banner");
-            let index = 0;
-            const slides = document.querySelectorAll(".banner-card");
+        /function autoSlideBanner() {
+    const banner = document.getElementById("banner");
+    const slides = document.querySelectorAll(".banner-card");
+    let index = 0;
 
-            setInterval(() => {
-                index = (index + 1) % slides.length;
-                banner.style.transform = `translateX(-${index * 100}%)`;
-            }, 5000);
-        }
-        autoSlideBanner();
+    // Set the width dynamically based on the number of slides
+    banner.style.width = `${slides.length * 100}%`;
+
+    slides.forEach(slide => {
+        slide.style.width = `${100 / slides.length}%`;
+    });
+
+    setInterval(() => {
+        index = (index + 1) % slides.length;
+        banner.style.transform = `translateX(-${index * 100}%)`;
+        banner.style.transition = "transform 0.5s ease-in-out";
+    }, 5000);
+}
+
+// Run the function when the window loads
+window.onload = autoSlideBanner;
 
         // 🛒 Product List
         const products = [
