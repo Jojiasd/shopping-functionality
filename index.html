@@ -235,7 +235,17 @@
     <!-- 🛍️ All Products Section -->
     <div class="section-title">🛍️ All Products</div>
     <div class="scroll-container" id="products"></div>
-
+<!-- 🔐 Login Modal -->
+<div id="loginModal" class="login-modal">
+    <div class="login-content">
+        <h2>🔐 Login</h2>
+        <input type="text" placeholder="Username" id="username">
+        <input type="password" placeholder="Password" id="password">
+        <button class="btn" onclick="login()">Login</button>
+        <button class="close-btn" onclick="closeLogin()">✖</button>
+    </div>
+</div>
+    
     <script>
         // 🏆 Auto-Slide Banner Every 5 Seconds
         function autoSlideBanner() {
@@ -288,10 +298,7 @@
             localStorage.setItem("selectedProduct", JSON.stringify(selectedProduct));
             window.location.href = "product.html";
         }
-
-        displayProducts();
-        // Show login popup after 5 seconds
-setTimeout(() => {
+        setTimeout(() => {
     document.getElementById("loginModal").style.display = "flex";
 }, 5000);
 
@@ -304,7 +311,11 @@ function closeLogin() {
 function login() {
     alert("✅ Login Successful!");
     closeLogin();
-}
+        }
+
+        displayProducts();
+        // Show login popup after 5 seconds
+
     </script>
 
 </body>
