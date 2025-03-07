@@ -143,7 +143,16 @@
             font-weight: bold;
             border-radius: 3px;
         }
-        /* 🔐 Login Modal Styles */
+        -width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
 /* 🔐 Login Modal Styles */
 .login-modal {
     display: none; /* Initially hidden */
@@ -166,13 +175,6 @@
     text-align: center;
     width: 300px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    position: relative;
-}
-
-/* 🔴 Error Message */
-.error-message {
-    color: red;
-    font-size: 14px;
 }
 
 /* 🎯 Close Button */
@@ -206,18 +208,6 @@
     cursor: pointer;
     margin-top: 10px;
 }
-
-/* 🌙 Dark Mode */
-@media (prefers-color-scheme: dark) {
-    .login-content {
-        background: #333;
-        color: white;
-    }
-    .login-content input {
-        background: #555;
-        color: white;
-    }
-}
     </style>
 </head>
 <body>
@@ -238,9 +228,14 @@
         <input type="password" placeholder="Password" id="password">
         <button class="btn" onclick="login()">Login</button>
         <button class="close-btn" onclick="closeLogin()">✖</button>
+        <p><strong>Sample Users:</strong></p>
+        <ul>
+            <li><strong>admin</strong> / admin123</li>
+            <li><strong>user1</strong> / pass123</li>
+            <li><strong>user2</strong> / hello456</li>
+        </ul>
     </div>
-</div>
-    <!-- 🎉 Full-Width Offer Section -->
+</div>    <!-- 🎉 Full-Width Offer Section -->
     <div class="offer">⚡ Get 30% Off on Your First Order! Use Code: WELCOME30</div>
 
     <!-- 🛒 Go to Cart Button -->
@@ -352,36 +347,38 @@ const users = {
     "user": "password"
 };
 
-// Login function
-function login() {
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-    const rememberMe = document.getElementById("rememberMe").checked;
-    const errorMessage = document.getElementById("errorMessage");
+ // Sample Users Database
+const users = [
+    { username: "admin", password: "admin123" },
+    { username: "user1", password: "pass123" },
+    { username: "user2", password: "hello456" }
+];
 
-    // Validate credentials
-    if (users[username] && users[username] === password) {
-        errorMessage.textContent = ""; // Clear errors
+// Show login popup after 5 seconds
+setTimeout(() => {
+    document.getElementById("loginModal").style.display = "flex";
+}, 5000);
 
-        // Store login data in localStorage if "Remember Me" is checked
-        if (rememberMe) {
-            localStorage.setItem("loggedInUser", username);
-        }
-
-        alert("✅ Login Successful!");
-        closeLogin();
-    } else {
-        errorMessage.textContent = "❌ Invalid username or password!";
-    }
+// Function to close the login popup
+function closeLogin() {
+    document.getElementById("loginModal").style.display = "none";
 }
 
-// Auto-login if user has already logged in
-window.onload = function() {
-    const loggedInUser = localStorage.getItem("loggedInUser");
-    if (loggedInUser) {
-        alert(`Welcome back, ${loggedInUser}!`);
+// Function when login button is clicked
+function login() {
+    const enteredUsername = document.getElementById("username").value;
+    const enteredPassword = document.getElementById("password").value;
+
+    // Check if user exists
+    const user = users.find(u => u.username === enteredUsername && u.password === enteredPassword);
+
+    if (user) {
+        alert(`✅ Login Successful! Welcome, ${enteredUsername}`);
+        closeLogin();
+    } else {
+        alert("❌ Invalid Username or Password!");
     }
-};
+}
 
         displayProducts();
         // Show login popup after 5 seconds
