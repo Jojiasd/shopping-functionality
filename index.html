@@ -144,6 +144,7 @@
             border-radius: 3px;
         }
         /* 🔐 Login Modal Styles */
+/* 🔐 Login Modal Styles */
 .login-modal {
     display: none; /* Initially hidden */
     position: fixed;
@@ -165,6 +166,13 @@
     text-align: center;
     width: 300px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* 🔴 Error Message */
+.error-message {
+    color: red;
+    font-size: 14px;
 }
 
 /* 🎯 Close Button */
@@ -197,6 +205,18 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+}
+
+/* 🌙 Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .login-content {
+        background: #333;
+        color: white;
+    }
+    .login-content input {
+        background: #555;
+        color: white;
+    }
 }
     </style>
 </head>
@@ -239,8 +259,12 @@
 <div id="loginModal" class="login-modal">
     <div class="login-content">
         <h2>🔐 Login</h2>
+        <p id="errorMessage" class="error-message"></p>
         <input type="text" placeholder="Username" id="username">
         <input type="password" placeholder="Password" id="password">
+        <label>
+            <input type="checkbox" id="rememberMe"> Remember Me
+        </label>
         <button class="btn" onclick="login()">Login</button>
         <button class="close-btn" onclick="closeLogin()">✖</button>
     </div>
@@ -302,16 +326,62 @@
     document.getElementById("loginModal").style.display = "flex";
 }, 5000);
 
+// Auto-show login popup after 5 seconds (if user is not logged in)
+setTimeout(() => {
+    if (!localStorage.getItem("loggedInUser")) {
+        document.getElementById("loginModal").style.display = "flex";
+    }
+}, 5000);
+
 // Function to close the login popup
 function closeLogin() {
     document.getElementById("loginModal").style.display = "none";
 }
 
-// Function when login button is clicked
+// Close modal when clicking outside the box
+window.onclick = function(event) {
+    const modal = document.getElementById("loginModal");
+    if (event.target === modal) {
+        closeLogin();
+    }
+}
+
+// Fake user database
+const users = {
+    "admin": "12345",
+    "user": "password"
+};
+
+// Login function
 function login() {
-    alert("✅ Login Successful!");
-    closeLogin();
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const rememberMe = document.getElementById("rememberMe").checked;
+    const errorMessage = document.getElementById("errorMessage");
+
+    // Validate credentials
+    if (users[username] && users[username] === password) {
+        errorMessage.textContent = ""; // Clear errors
+
+        // Store login data in localStorage if "Remember Me" is checked
+        if (rememberMe) {
+            localStorage.setItem("loggedInUser", username);
         }
+
+        alert("✅ Login Successful!");
+        closeLogin();
+    } else {
+        errorMessage.textContent = "❌ Invalid username or password!";
+    }
+}
+
+// Auto-login if user has already logged in
+window.onload = function() {
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    if (loggedInUser) {
+        alert(`Welcome back, ${loggedInUser}!`);
+    }
+};
 
         displayProducts();
         // Show login popup after 5 seconds
