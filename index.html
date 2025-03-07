@@ -179,33 +179,27 @@ Section -->
     <div class="section-title">🛍️ All Products</div>
     <div class="scroll-container" id="products"></div>
     
-    <script>
-                
+      <script>
         // 🏆 Auto-Slide Banner Every 5 Seconds
         function autoSlideBanner() {
             const banner = document.getElementById("banner");
-            let scrollAmount = 0;
-            const bannerWidth = banner.scrollWidth / banner.children.length;
+            let index = 0;
+            const slides = document.querySelectorAll(".banner-card");
 
             setInterval(() => {
-                scrollAmount += bannerWidth;
-                if (scrollAmount >= banner.scrollWidth) {
-                    scrollAmount = 0;
-                }
-                banner.scrollTo({ left: scrollAmount, behavior: "smooth" });
+                index = (index + 1) % slides.length;
+                banner.style.transform = `translateX(-${index * 100}%)`;
             }, 5000);
         }
         autoSlideBanner();
 
+        // 🛒 Product List
         const products = [
-            { id: 1, name: "Smart Watch", price: 59.99, image: "https://via.placeholder.com/250x150", description: "Latest smart watch with AI features." },
-            { id: 2, name: "Wireless Headphones", price: 89.99, image: "https://via.placeholder.com/250x150", description: "Noise cancellation & deep bass sound." },
-            { id: 3, name: "Gaming Mouse", price: 39.99, image: "https://via.placeholder.com/250x150", description: "RGB lights with ultra-fast response." },
-            { id: 4, name: "Bluetooth Speaker", price: 49.99, image: "https://via.placeholder.com/250x150", description: "Bass-boosted 360° surround sound." },
-            { id: 5, name: "Smartphone Tripod", price: 29.99, image: "https://via.placeholder.com/250x150", description: "Adjustable tripod with Bluetooth remote." },
-            { id: 6, name: "Laptop Cooling Pad", price: 25.99, image: "https://via.placeholder.com/250x150", description: "Ultra-quiet fans for laptop cooling." },
-            { id: 7, name: "4K Action Camera", price: 129.99, image: "https://via.placeholder.com/250x150", description: "Waterproof camera with 4K recording." },
-            { id: 8, name: "Smart LED Bulb", price: 15.99, image: "https://via.placeholder.com/250x150", description: "Wi-Fi controlled multicolor bulb." }
+            { id: 1, name: "Smart Watch", price: 59.99, image: "https://via.placeholder.com/250x150" },
+            { id: 2, name: "Wireless Headphones", price: 89.99, image: "https://via.placeholder.com/250x150" },
+            { id: 3, name: "Gaming Mouse", price: 39.99, image: "https://via.placeholder.com/250x150" },
+            { id: 4, name: "Bluetooth Speaker", price: 49.99, image: "https://via.placeholder.com/250x150" },
+            { id: 5, name: "Smartphone Tripod", price: 29.99, image: "https://via.placeholder.com/250x150" }
         ];
 
         function displayProducts() {
@@ -216,7 +210,6 @@ Section -->
                 const card = document.createElement("div");
                 card.classList.add("product-card");
                 card.innerHTML = `
-                    <div class="label">New</div>
                     <img src="${product.image}" alt="${product.name}">
                     <h3>${product.name}</h3>
                     <p>$${product.price}</p>
@@ -232,13 +225,39 @@ Section -->
             localStorage.setItem("selectedProduct", JSON.stringify(selectedProduct));
             window.location.href = "product.html";
         }
-        
 
- 
-        
         displayProducts();
-        // Show login popup after 5 seconds
 
+        // 🔥 Show login popup after 5 seconds
+        setTimeout(() => {
+            document.getElementById("loginModal").style.display = "flex";
+        }, 5000);
+
+        // 🔥 Close login popup
+        function closeLogin() {
+            document.getElementById("loginModal").style.display = "none";
+        }
+
+        // 🔥 Dummy user authentication
+        const users = [
+            { username: "admin", password: "admin123" },
+            { username: "user1", password: "pass123" },
+            { username: "user2", password: "hello456" }
+        ];
+
+        function login() {
+            const enteredUsername = document.getElementById("username").value;
+            const enteredPassword = document.getElementById("password").value;
+
+            const user = users.find(u => u.username === enteredUsername && u.password === enteredPassword);
+
+            if (user) {
+                alert(`✅ Login Successful! Welcome, ${enteredUsername}`);
+                closeLogin();
+            } else {
+                alert("❌ Invalid Username or Password!");
+            }
+        }
     </script>
 
 </body>
