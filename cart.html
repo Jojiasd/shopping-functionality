@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .cart-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 320px;
+        }
+        .cart-item {
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .cart-info {
+            flex: 1;
+        }
+        .btn {
+            padding: 8px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-remove {
+            background: #ff4d4d;
+            color: white;
+        }
+        .btn-remove:hover {
+            background: #cc0000;
+        }
+        .btn-clear {
+            background: #007bff;
+            color: white;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .btn-clear:hover {
+            background: #0056b3;
+        }
+        .empty-cart {
+            font-size: 16px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cart-container" id="cartItems"></div>
+
+    <script>
+        function loadCart() {
+            let cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+            const cartContainer = document.getElementById("cartItems");
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = `<p class="empty-cart">Your cart is empty.</p>`;
+                return;
+            }
+
+            cartContainer.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="cart-info">
+                        <p><strong>${item.name}</strong></p>
+                        <p>Price: $${item.price}</p>
+                    </div>
+                    <button class="btn btn-remove" onclick="removeFromCart(${index})">Remove</button>
+                </div>
+            `).join("");
+
+            cartContainer.innerHTML += `<button class="btn btn-clear" onclick="clearCart()">🗑 Clear Cart</button>`;
+        }
+
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem("cart"));
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCart();
+        }
+
+        function clearCart() {
+            localStorage.removeItem("cart");
+            loadCart();
+        }
+
+        loadCart();
+    </script>
+
+</body>
+</html>

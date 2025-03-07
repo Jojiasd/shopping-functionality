@@ -1,0 +1,103 @@
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .product-details {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 320px;
+            position: relative;
+            transition: transform 0.3s ease-in-out;
+        }
+        .product-details:hover {
+            transform: scale(1.05);
+        }
+        img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .btn {
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        .btn-add {
+            background: #007bff;
+            color: white;
+        }
+        .btn-add:hover {
+            background: #0056b3;
+        }
+        .btn-back {
+            background: #ff4d4d;
+            color: white;
+        }
+        .btn-back:hover {
+            background: #cc0000;
+        }
+        .label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: red;
+            color: white;
+            padding: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="product-details" id="productDetails"></div>
+
+    <script>
+        const productData = localStorage.getItem("selectedProduct");
+        if (productData) {
+            const product = JSON.parse(productData);
+            document.getElementById("productDetails").innerHTML = `
+                <div class="label">New</div>
+                <img src="${product.image}" alt="${product.name}">
+                <h2>${product.name}</h2>
+                <p>${product.description}</p>
+                <p><strong>Price: $${product.price}</strong></p>
+                <button class="btn btn-add" onclick="addToCart(${product.id})">🛒 Add to Cart</button>
+                <button class="btn btn-back" onclick="goBack()">⬅ Go Back</button>
+            `;
+        }
+
+        function addToCart(id) {
+            let cart = localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [];
+            const product = JSON.parse(localStorage.getItem("selectedProduct"));
+            cart.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert("✅ Product added to cart!");
+        }
+
+        function goBack() {
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>

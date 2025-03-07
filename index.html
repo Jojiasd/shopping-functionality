@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        /* 🔥 Banner Section */
+        .banner-wrapper {
+            overflow: hidden;
+            width: 95%;
+        }
+        .banner-container {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px;
+            white-space: nowrap;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .banner-container::-webkit-scrollbar {
+            display: none;
+        }
+        .banner-card {
+            margin-right: 15px;
+            margin-left: 15px;
+            min-width: 93%;
+            height: 250px;
+            hackground: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        /* 🎉 Full-Width Offer Section */
+        .offer {
+            text-align: center;
+            background: #ffcc00;
+            padding: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+            width: 100%;
+        }
+        /* 🛒 Go to Cart Button */
+        .cart-button {
+            text-align: center;
+            margin: 10px 0;
+        }
+        .cart-button .btn {
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        /* 🛍️ Section Titles */
+        .section-title {
+            text-align: center;
+            font-size: 24px;
+            margin: 20px 0;
+            font-weight: bold;
+            background: #222;
+            color: white;
+            padding: 10px;
+            width: 100%;
+        }
+        .scroll-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 10px;
+            white-space: nowrap;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        .scroll-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        .scroll-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+        .scroll-container::-webkit-scrollbar-track {
+            background: #ddd;
+        }
+        /* 🛒 Product Card */
+        .product-card {
+            width: 260px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            display: inline-block;
+            transition: transform 0.3s ease-in-out;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
+        }
+        .product-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .btn {
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: red;
+            color: white;
+            padding: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🔥 Banner Auto-Slide Section -->
+    <div class="banner-wrapper">
+        <div class="banner-container" id="banner">
+            <div class="banner-card">🔥 Super Sale - 50% Off on Electronics!</div>
+            <div class="banner-card">🚀 New Arrivals - Check Out the Latest Gadgets!</div>
+            <div class="banner-card">🎁 Exclusive Deals for Premium Members!</div>
+        </div>
+    </div>
+
+    <!-- 🎉 Full-Width Offer Section -->
+    <div class="offer">⚡ Get 30% Off on Your First Order! Use Code: WELCOME30</div>
+
+    <!-- 🛒 Go to Cart Button -->
+    <div class="cart-button">
+        <button class="btn" onclick="window.location.href='cart.html'">🛒 Go to Cart</button>
+    </div>
+
+    <!-- ⭐ Featured Products Section -->
+    <div class="section-title">⭐ Featured Products</div>
+    <div class="scroll-container" id="featuredProducts"></div>
+
+    <!-- 🛍️ All Products Section -->
+    <div class="section-title">🛍️ All Products</div>
+    <div class="scroll-container" id="products"></div>
+
+    <script>
+        // 🏆 Auto-Slide Banner Every 5 Seconds
+        function autoSlideBanner() {
+            const banner = document.getElementById("banner");
+            let scrollAmount = 0;
+            const bannerWidth = banner.scrollWidth / banner.children.length;
+
+            setInterval(() => {
+                scrollAmount += bannerWidth;
+                if (scrollAmount >= banner.scrollWidth) {
+                    scrollAmount = 0;
+                }
+                banner.scrollTo({ left: scrollAmount, behavior: "smooth" });
+            }, 5000);
+        }
+        autoSlideBanner();
+
+        const products = [
+            { id: 1, name: "Smart Watch", price: 59.99, image: "https://via.placeholder.com/250x150", description: "Latest smart watch with AI features." },
+            { id: 2, name: "Wireless Headphones", price: 89.99, image: "https://via.placeholder.com/250x150", description: "Noise cancellation & deep bass sound." },
+            { id: 3, name: "Gaming Mouse", price: 39.99, image: "https://via.placeholder.com/250x150", description: "RGB lights with ultra-fast response." },
+            { id: 4, name: "Bluetooth Speaker", price: 49.99, image: "https://via.placeholder.com/250x150", description: "Bass-boosted 360° surround sound." },
+            { id: 5, name: "Smartphone Tripod", price: 29.99, image: "https://via.placeholder.com/250x150", description: "Adjustable tripod with Bluetooth remote." },
+            { id: 6, name: "Laptop Cooling Pad", price: 25.99, image: "https://via.placeholder.com/250x150", description: "Ultra-quiet fans for laptop cooling." },
+            { id: 7, name: "4K Action Camera", price: 129.99, image: "https://via.placeholder.com/250x150", description: "Waterproof camera with 4K recording." },
+            { id: 8, name: "Smart LED Bulb", price: 15.99, image: "https://via.placeholder.com/250x150", description: "Wi-Fi controlled multicolor bulb." }
+        ];
+
+        function displayProducts() {
+            const productContainer = document.getElementById("products");
+            const featuredContainer = document.getElementById("featuredProducts");
+
+            products.forEach(product => {
+                const card = document.createElement("div");
+                card.classList.add("product-card");
+                card.innerHTML = `
+                    <div class="label">New</div>
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>$${product.price}</p>
+                    <button class="btn" onclick="viewProduct(${product.id})">View Details</button>
+                `;
+                featuredContainer.appendChild(card);
+                productContainer.appendChild(card.cloneNode(true));
+            });
+        }
+
+        function viewProduct(id) {
+            const selectedProduct = products.find(p => p.id === id);
+            localStorage.setItem("selectedProduct", JSON.stringify(selectedProduct));
+            window.location.href = "product.html";
+        }
+
+        displayProducts();
+    </script>
+
+</body>
+</html>
