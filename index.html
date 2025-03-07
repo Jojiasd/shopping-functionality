@@ -143,16 +143,7 @@
             font-weight: bold;
             border-radius: 3px;
         }
-        -width: 100%;
-    padding: 10px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
+        
 /* 🔐 Login Modal Styles */
 .login-modal {
     display: none; /* Initially hidden */
@@ -250,20 +241,6 @@
     <!-- 🛍️ All Products Section -->
     <div class="section-title">🛍️ All Products</div>
     <div class="scroll-container" id="products"></div>
-<!-- 🔐 Login Modal -->
-<div id="loginModal" class="login-modal">
-    <div class="login-content">
-        <h2>🔐 Login</h2>
-        <p id="errorMessage" class="error-message"></p>
-        <input type="text" placeholder="Username" id="username">
-        <input type="password" placeholder="Password" id="password">
-        <label>
-            <input type="checkbox" id="rememberMe"> Remember Me
-        </label>
-        <button class="btn" onclick="login()">Login</button>
-        <button class="close-btn" onclick="closeLogin()">✖</button>
-    </div>
-</div>
     
     <script>
         // 🏆 Auto-Slide Banner Every 5 Seconds
