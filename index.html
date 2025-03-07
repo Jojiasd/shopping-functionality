@@ -317,35 +317,7 @@
             localStorage.setItem("selectedProduct", JSON.stringify(selectedProduct));
             window.location.href = "product.html";
         }
-        setTimeout(() => {
-    document.getElementById("loginModal").style.display = "flex";
-}, 5000);
-
-// Auto-show login popup after 5 seconds (if user is not logged in)
-setTimeout(() => {
-    if (!localStorage.getItem("loggedInUser")) {
-        document.getElementById("loginModal").style.display = "flex";
-    }
-}, 5000);
-
-// Function to close the login popup
-function closeLogin() {
-    document.getElementById("loginModal").style.display = "none";
-}
-
-// Close modal when clicking outside the box
-window.onclick = function(event) {
-    const modal = document.getElementById("loginModal");
-    if (event.target === modal) {
-        closeLogin();
-    }
-}
-
-// Fake user database
-const users = {
-    "admin": "12345",
-    "user": "password"
-};
+        
 
  // Sample Users Database
 const users = [
