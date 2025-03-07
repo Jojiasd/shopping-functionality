@@ -307,39 +307,7 @@ Section -->
         }
         
 
- // Sample Users Database
-const users = [
-    { username: "admin", password: "admin123" },
-    { username: "user1", password: "pass123" },
-    { username: "user2", password: "hello456" }
-];
-
-// Show login popup after 5 seconds
-setTimeout(() => {
-    document.getElementById("loginModal").style.display = "flex";
-}, 5000);
-
-// Function to close the login popup
-function closeLogin() {
-    document.getElementById("loginModal").style.display = "none";
-}
-
-// Function when login button is clicked
-function login() {
-    const enteredUsername = document.getElementById("username").value;
-    const enteredPassword = document.getElementById("password").value;
-
-    // Check if user exists
-    const user = users.find(u => u.username === enteredUsername && u.password === enteredPassword);
-
-    if (user) {
-        alert(`✅ Login Successful! Welcome, ${enteredUsername}`);
-        closeLogin();
-    } else {
-        alert("❌ Invalid Username or Password!");
-    }
-}
-        / 👤 Sample Users Database
+ / 👤 Sample Users Database
         const users = [
             { username: "admin", password: "admin123" },
             { username: "user1", password: "pass123" },
@@ -370,7 +338,9 @@ function login() {
                 alert("❌ Invalid Username or Password!");
             }
         }
+// Function when login button is clicked
 
+        
         displayProducts();
         // Show login popup after 5 seconds
 
