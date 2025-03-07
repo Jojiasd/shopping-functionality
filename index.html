@@ -159,7 +159,14 @@
             <div class="banner-card">🎁 Exclusive Deals for Premium Members!</div>
         </div>
     </div>
-            <!-- 🔐 Login Modal -->
+            <!-- 🔥 Cards -->
+<div class="cards-container">
+    <div class="card">Hover to Login</div>
+    <div class="card">Hover to Login</div>
+    <div class="card">Hover to Login</div>
+</div>
+
+<!-- 🔐 Login Modal -->
 <div id="loginModal" class="login-modal">
     <div class="login-content">
         <h2>🔐 Login</h2>
@@ -177,6 +184,28 @@
 </div>
 
 <style>
+/* Card Styles */
+.ards-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+ard {
+    width: 200px;
+    height: 100px;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+.ard:hover {
+    transform: scale(1.1);
+}
+
 /* Login Modal Styles */
 .login-modal {
     display: none;
@@ -224,7 +253,8 @@ input {
     cursor: pointer;
     border-radius: 5px;
 }
-</style>Section -->
+</style>
+Section -->
     <div class="offer">⚡ Get 30% Off on Your First Order! Use Code: WELCOME30</div>
 
     <!-- 🛒 Go to Cart Button -->
