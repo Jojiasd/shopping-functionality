@@ -143,6 +143,61 @@
             font-weight: bold;
             border-radius: 3px;
         }
+        /* 🔐 Login Modal Styles */
+.login-modal {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 🔳 Login Box */
+.login-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 🎯 Close Button */
+.close-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+/* 🔵 Styled Input Fields */
+.login-content input {
+    width: 90%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* 🟢 Login Button */
+.login-content .btn {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
     </style>
 </head>
 <body>
@@ -155,7 +210,16 @@
             <div class="banner-card">🎁 Exclusive Deals for Premium Members!</div>
         </div>
     </div>
-
+<!-- 🔐 Login Modal -->
+<div id="loginModal" class="login-modal">
+    <div class="login-content">
+        <h2>🔐 Login</h2>
+        <input type="text" placeholder="Username" id="username">
+        <input type="password" placeholder="Password" id="password">
+        <button class="btn" onclick="login()">Login</button>
+        <button class="close-btn" onclick="closeLogin()">✖</button>
+    </div>
+</div>
     <!-- 🎉 Full-Width Offer Section -->
     <div class="offer">⚡ Get 30% Off on Your First Order! Use Code: WELCOME30</div>
 
@@ -226,6 +290,21 @@
         }
 
         displayProducts();
+        // Show login popup after 5 seconds
+setTimeout(() => {
+    document.getElementById("loginModal").style.display = "flex";
+}, 5000);
+
+// Function to close the login popup
+function closeLogin() {
+    document.getElementById("loginModal").style.display = "none";
+}
+
+// Function when login button is clicked
+function login() {
+    alert("✅ Login Successful!");
+    closeLogin();
+}
     </script>
 
 </body>
