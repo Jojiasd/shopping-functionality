@@ -263,63 +263,7 @@
         </div>
     </div>
             
-      <script>
-                // 🛒 Product List
-        const products = [
-            { id: 1, name: "Smart Watch", price: 59.99, " },
-            { id: 2, name: "Wireless Headphones", price: 89.99, image: "https://via.placeholder.com/250x150" },
-            { id: 3, name: "Gaming Mouse", price: 39.99, image: "https://via.placeholder.com/250x150" },
-            { id: 4, name: "Bluetooth Speaker", price: 49.99, image: "https://via.placeholder.com/250x150" },
-            { id: 5, name: "Smartphone Tripod", price: 29.99, image: "https://via.placeholder.com/250x150" }
-        ];
-
-        function displayProducts() {
-            const productContainer = document.getElementById("products");
-            const featuredContainer = document.getElementById("featuredProducts");
-
-            products.forEach(product => {
-                const card = document.createElement("div");
-                card.classList.add("product-card");
-                card.innerHTML = `
-                    <img src="${product.image}" alt="${product.name}">
-                    <h3>${product.name}</h3>
-                    <p>$${product.price}</p>
-                    <button class="btn" onclick="viewProduct(${product.id})">View Details</button>
-                `;
-                featuredContainer.appendChild(card);
-                productContainer.appendChild(card.cloneNode(true));
-            });
-        }
-
-        function viewProduct(id) {
-            const selectedProduct = products.find(p => p.id === id);
-            localStorage.setItem("selectedProduct", JSON.stringify(selectedProduct));
-            window.location.href = "product.html";
-        }
-
-        displayProducts();
-
-        // 🔥 Show login popup after 5 seconds
-        setTimeout(() => {
-            document.getElementById("loginModal").style.display = "flex";
-        }, 5000);
-
-        // 🔥 Close login popup
-        function closeLogin() {
-            document.getElementById("loginModal").style.display = "none";
-        }
-
-        // 🔥 Dummy user authentication
-        const users = [
-            { username: "admin", password: "admin123" },
-            { username: "user1", password: "pass123" },
-            { username: "user2", password: "hello456" }
-        ];
-
-        function login() {
-            const enteredUsername = document.getElementById("username").value;
-            const enteredPassword = document.getElementById("password").value;
-
+      
     <div class="banner-wrapper">
         <div class="banner-container" id="banner">
             <div class="banner-card">🔥 Super Sale - 50% Off on Electronics!</div>
