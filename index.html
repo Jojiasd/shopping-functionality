@@ -190,6 +190,35 @@
             cursor: pointer;
             float: right;
         }
+          /* Footer/Navbar Style */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #007bff;
+            color: white;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 15px 0;
+            font-size: 16px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+        
+        .footer-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-icon i {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
 
     </style>
 </head>
@@ -222,7 +251,22 @@
     <div class="section-title">🛍️ All Products</div>
     <div class="scroll-container" id="products"></div>
 
-
+     <!-- Footer/Navbar with Icons -->
+    <div class="footer">
+        <a href="#" class="footer-icon">
+            <i class="fas fa-user"></i>
+            <span>User</span>
+        </a>
+        <a href="#" class="footer-icon">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="footer-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+        </a>
+    </div>
+         
                 <!-- 🔥 Login Popup -->
     <div class="login-modal" id="loginModal">
         <div class="login-box">
