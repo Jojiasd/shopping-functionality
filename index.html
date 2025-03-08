@@ -11,42 +11,87 @@
             margin: 0;
             padding: 0;
         }
-        /* 🔥 Banner Section */
-        .banner-wrapper {
-            overflow: hidden;
-            width: 100%;
-        }
-        .banner-container {
-            width:97%;
-            display: flex;
-            gap: 15px;
-            overflow-x: auto;
-           
-            white-space: nowrap;
-            scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-        .banner-container::-webkit-scrollbar {
-            display: none;
-        }
-        .banner-card {
-            margin-right: 15px;
-            margin-left: 15px;
-            width: 93%;
-            height: 250px;
-            hackground: linear-gradient(to right, #ff7e5f, #feb47b);
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 20px;
-            font-weight: bold;
-            border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+       /* 🔥 Banner Section */
+.banner-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+
+.banner-container {
+    width: 97%;
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.banner-container::-webkit-scrollbar {
+    display: none;
+}
+
+.banner-card {
+    margin-right: 15px;
+    margin-left: 15px;
+    width: 93%;
+    height: 250px;
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+    .banner-container {
+        gap: 10px;
+    }
+
+    .banner-card {
+        width: 85%;
+        height: 200px;
+        font-size: 18px;
+        padding: 15px;
+    }
+}
+
+/* Tablet Styles (optional, between mobile and desktop) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .banner-container {
+        gap: 12px;
+    }
+
+    .banner-card {
+        width: 90%;
+        height: 220px;
+        font-size: 19px;
+        padding: 18px;
+    }
+}
+
+/* Windows/ Desktop Styles */
+@media (min-width: 1025px) {
+    .banner-container {
+        gap: 15px;
+    }
+
+    .banner-card {
+        width: 93%;
+        height: 250px;
+        font-size: 20px;
+        padding: 20px;
+    }
+}
+
         /* 🎉 Full-Width Offer Section */
         .offer {
             text-align: center;
